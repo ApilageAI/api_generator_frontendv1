@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Eye, EyeOff, User, Mail, Lock, Users, Shield, Zap, Copy, CheckCircle } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Users, Shield, Zap, Copy, CheckCircle } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const { user, loading, signIn, signUp, logout } = useAuth();
@@ -22,14 +23,14 @@ export default function Home() {
   const [chatLoading, setChatLoading] = useState(false);
   const [apiKeyCopied, setApiKeyCopied] = useState(false);
 
-  const showMessage = (msg: string, type: 'success' | 'error' = 'success') => {
+  const showMessage = (msg: string) => {
     setMessage(msg);
     setTimeout(() => setMessage(''), 5000);
   };
 
   const testAPI = async () => {
     if (!chatMessage.trim()) {
-      showMessage('Please enter a message', 'error');
+      showMessage('Please enter a message');
       return;
     }
 
@@ -53,26 +54,26 @@ export default function Home() {
     try {
       await navigator.clipboard.writeText(keyToCopy);
       setApiKeyCopied(true);
-      showMessage('API Key copied to clipboard!', 'success');
+      showMessage('API Key copied to clipboard!');
       setTimeout(() => setApiKeyCopied(false), 2000);
-    } catch (error) {
-      showMessage('Failed to copy API key', 'error');
+    } catch {
+      showMessage('Failed to copy API key');
     }
   };
 
   const handleAuth = async () => {
     if (!email || !password) {
-      showMessage('Please fill in all fields', 'error');
+      showMessage('Please fill in all fields');
       return;
     }
 
     if (!isLogin && password !== confirmPassword) {
-      showMessage('Passwords do not match!', 'error');
+      showMessage('Passwords do not match!');
       return;
     }
 
     if (!isLogin && password.length < 6) {
-      showMessage('Password must be at least 6 characters!', 'error');
+      showMessage('Password must be at least 6 characters!');
       return;
     }
 
@@ -88,8 +89,9 @@ export default function Home() {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-    } catch (error: any) {
-      showMessage(error.message, 'error');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      showMessage(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -105,7 +107,7 @@ export default function Home() {
             <div className="flex justify-between items-center h-16">
               {/* Logo */}
               <div className="flex items-center space-x-3">
-                <img src="/logo.png" alt="Apilage AI" className="w-8 h-8" />
+                <Image src="/logo.png" alt="Apilage AI" width={32} height={32} className="w-8 h-8" />
                 <span className="text-xl font-semibold text-gray-900">අපිලගේ AI</span>
               </div>
               
@@ -321,7 +323,7 @@ console.log(result.response);`}</pre>
           <div className="relative z-10">
             {/* Logo & Brand */}
             <div className="mb-10 flex items-center space-x-3">
-              <img src="/logo.png" alt="Apilage AI" className="w-12 h-12" />
+              <Image src="/logo.png" alt="Apilage AI" width={48} height={48} className="w-12 h-12" />
               <div>
                 <h1 className="text-2xl font-bold text-white">අපිලගේ AI</h1>
                 <p className="text-slate-400 text-sm">Sri Lankan AI Platform</p>
@@ -397,7 +399,7 @@ console.log(result.response);`}</pre>
             {/* Mobile Logo - Only shown on mobile */}
             <div className="lg:hidden text-center mb-8">
               <div className="flex items-center justify-center space-x-3 mb-4">
-                <img src="/logo.png" alt="Apilage AI" className="w-10 h-10" />
+                <Image src="/logo.png" alt="Apilage AI" width={40} height={40} className="w-10 h-10" />
                 <span className="text-2xl font-bold text-gray-900">අපිලගේ AI</span>
               </div>
               <p className="text-sm text-gray-600">Sri Lankan AI Platform</p>
