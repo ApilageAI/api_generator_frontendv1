@@ -42,8 +42,9 @@ export default function Home() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setChatResponse(`Demo response: You asked "${chatMessage}". Your API is working correctly!`);
       showMessage('API test successful!');
-    } catch (error: any) {
-      showMessage(error.message, 'error');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      showMessage(errorMessage);
     } finally {
       setChatLoading(false);
     }
