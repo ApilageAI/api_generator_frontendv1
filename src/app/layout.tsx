@@ -17,6 +17,16 @@ export const metadata: Metadata = {
   title: "Apilage AI - Educational AI Platform",
   description: "AI-powered educational platform for Sri Lankan students. Get help with O/L, A/L, mathematics, physics, and more.",
   keywords: "AI tutor, Sri Lanka education, O/L, A/L, mathematics, physics, online learning",
+  icons: {
+    icon: [
+      { url: '/logo.png', sizes: 'any', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
+    apple: '/apple-touch-icon.png',
+    shortcut: '/logo.png'
+  },
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
