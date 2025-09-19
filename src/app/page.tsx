@@ -216,7 +216,7 @@ export default function Home() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">Base URL</h3>
                     <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
-                      http://localhost:3000/api/chat
+                      https://606464b5-77c7-4bb1-a1b9-9d05cefa3519-dev.e1-us-east-azure.choreoapis.dev/api-generatorapilageai/apigeneratorbackend/v1.0/api/chat
                     </div>
                   </div>
 
@@ -235,7 +235,7 @@ export default function Home() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">JavaScript Example</h3>
                     <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                      <pre>{`const response = await fetch('http://localhost:3000/api/chat', {
+                      <pre>{`const response = await fetch('https://606464b5-77c7-4bb1-a1b9-9d05cefa3519-dev.e1-us-east-azure.choreoapis.dev/api-generatorapilageai/apigeneratorbackend/v1.0/api/chat', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ console.log(result.response);`}</pre>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">cURL Example</h3>
                     <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                      <pre>{`curl -X POST http://localhost:3000/api/chat \\
+                      <pre>{`curl -X POST https://606464b5-77c7-4bb1-a1b9-9d05cefa3519-dev.e1-us-east-azure.choreoapis.dev/api-generatorapilageai/apigeneratorbackend/v1.0/api/chat \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${user.apiKey}" \\
   -d '{"message": "Hello, how are you?"}'`}</pre>

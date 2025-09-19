@@ -16,8 +16,17 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Check if we have all required config values
+const hasAllFirebaseConfig = Object.values(firebaseConfig).every(value => value !== undefined && value !== '');
+
+// Initialize Firebase only if we have valid configuration
+let app: any = null;
+if (hasAllFirebaseConfig) {
+  app = initializeApp(firebaseConfig);
+} else if (typeof window !== 'undefined') {
+  // Only show warning on client side to avoid build errors
+  console.warn('Firebase configuration is incomplete. Some features may not work.');
+}
 
 // Initialize Firebase services
 export const auth = getAuth(app);
