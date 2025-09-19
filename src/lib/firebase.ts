@@ -2,7 +2,7 @@
 // Firebase Configuration
 // =============================================================================
 
-import { initializeApp } from 'firebase/app';
+import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
@@ -20,7 +20,7 @@ const firebaseConfig = {
 const hasAllFirebaseConfig = Object.values(firebaseConfig).every(value => value !== undefined && value !== '');
 
 // Initialize Firebase only if we have valid configuration
-let app: any = null;
+let app: FirebaseApp | null = null;
 if (hasAllFirebaseConfig) {
   app = initializeApp(firebaseConfig);
 } else if (typeof window !== 'undefined') {
@@ -29,7 +29,7 @@ if (hasAllFirebaseConfig) {
 }
 
 // Initialize Firebase services
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+export const auth = app ? getAuth(app) : getAuth();
+export const db = app ? getFirestore(app) : getFirestore();
 
 export default app;
