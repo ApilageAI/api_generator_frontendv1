@@ -90,14 +90,14 @@ NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-domain
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
 
 # Backend API
-NEXT_PUBLIC_API_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=https://endpoint.apilageai.lk
 ```
 
 ## 📖 API Documentation
 
 ### Authentication
 ```bash
-curl -X POST http://localhost:3000/api/chat \
+curl -X POST https://endpoint.apilageai.lk/api/chat \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{"message": "Hello, how are you?"}'

@@ -28,6 +28,16 @@ export default function Home() {
     setTimeout(() => setMessage(''), 5000);
   };
 
+  // Helper to format numbers to 3 decimal places
+  const formatCredits = (val: number | undefined | null) => {
+    if (val === undefined || val === null || Number.isNaN(val)) return '0.000';
+    try {
+      return Number(val).toFixed(3);
+    } catch {
+      return '0.000';
+    }
+  };
+
   const testAPI = async () => {
     if (!chatMessage.trim()) {
       showMessage('Please enter a message');
@@ -142,7 +152,7 @@ export default function Home() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-gray-50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-gray-900">{user.credits}</div>
+                      <div className="text-2xl font-bold text-gray-900">{formatCredits(user.credits)}</div>
                       <div className="text-xs text-gray-600">Credits</div>
                     </div>
                     <div className="bg-gray-50 p-4 rounded-lg text-center">
@@ -216,7 +226,7 @@ export default function Home() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">Base URL</h3>
                     <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
-                      http://localhost:3000/api/chat
+                      https://endpoint.apilageai.lk/api/chat
                     </div>
                   </div>
 
@@ -235,7 +245,7 @@ export default function Home() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">JavaScript Example</h3>
                     <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                      <pre>{`const response = await fetch('http://localhost:3000/api/chat', {
+                      <pre>{`const response = await fetch('https://endpoint.apilageai.lk/api/chat', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -255,7 +265,7 @@ console.log(result.response);`}</pre>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">cURL Example</h3>
                     <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                      <pre>{`curl -X POST http://localhost:3000/api/chat \\
+                      <pre>{`curl -X POST https://endpoint.apilageai.lk/api/chat \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${user.apiKey}" \\
   -d '{"message": "Hello, how are you?"}' `}</pre>
@@ -271,7 +281,7 @@ console.log(result.response);`}</pre>
                     <div className="mb-3">
                       <div className="font-semibold text-gray-800 mb-1 text-xs">JavaScript Example</div>
                       <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                        <pre>{`const response = await fetch('http://localhost:3000/api/chat', {
+                        <pre>{`const response = await fetch('https://endpoint.apilageai.lk/api/chat', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -290,7 +300,7 @@ console.log(result.response);`}</pre>
                     <div>
                       <div className="font-semibold text-gray-800 mb-1 text-xs">cURL Example</div>
                       <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                        <pre>{`curl -X POST http://localhost:3000/api/chat \\
+                        <pre>{`curl -X POST https://endpoint.apilageai.lk/api/chat \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${user.apiKey}" \\
   -d '{"message": "What is the latest news in Sri Lanka?", "enableGoogleSearch": true}'`}</pre>
