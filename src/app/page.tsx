@@ -216,7 +216,7 @@ export default function Home() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">Base URL</h3>
                     <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
-                      https://606464b5-77c7-4bb1-a1b9-9d05cefa3519-dev.e1-us-east-azure.choreoapis.dev/api-generatorapilageai/apigeneratorbackend/v1.0/api/chat
+                      http://localhost:3000/api/chat
                     </div>
                   </div>
 
@@ -235,7 +235,7 @@ export default function Home() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">JavaScript Example</h3>
                     <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                      <pre>{`const response = await fetch('https://606464b5-77c7-4bb1-a1b9-9d05cefa3519-dev.e1-us-east-azure.choreoapis.dev/api-generatorapilageai/apigeneratorbackend/v1.0/api/chat', {
+                      <pre>{`const response = await fetch('http://localhost:3000/api/chat', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -255,10 +255,46 @@ console.log(result.response);`}</pre>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">cURL Example</h3>
                     <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
-                      <pre>{`curl -X POST https://606464b5-77c7-4bb1-a1b9-9d05cefa3519-dev.e1-us-east-azure.choreoapis.dev/api-generatorapilageai/apigeneratorbackend/v1.0/api/chat \\
+                      <pre>{`curl -X POST http://localhost:3000/api/chat \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${user.apiKey}" \\
-  -d '{"message": "Hello, how are you?"}'`}</pre>
+  -d '{"message": "Hello, how are you?"}' `}</pre>
+                    </div>
+                  </div>
+
+                  {/* Enable Google Search */}
+                  <div>
+                    <h3 className="font-medium text-gray-900 mb-2">Enable Google Search</h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      You can enable Google Search for your API call by including the <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-xs">enableGoogleSearch</code> parameter in your request body. When set to <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-xs">true</code>, the AI will use Google Search to enhance its answers with up-to-date information.
+                    </p>
+                    <div className="mb-3">
+                      <div className="font-semibold text-gray-800 mb-1 text-xs">JavaScript Example</div>
+                      <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
+                        <pre>{`const response = await fetch('http://localhost:3000/api/chat', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ${user.apiKey}'
+  },
+  body: JSON.stringify({
+    message: 'What is the latest news in Sri Lanka?',
+    enableGoogleSearch: true
+  })
+});
+
+const result = await response.json();
+console.log(result.response);`}</pre>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-800 mb-1 text-xs">cURL Example</div>
+                      <div className="bg-gray-900 text-white p-4 rounded text-sm overflow-x-auto">
+                        <pre>{`curl -X POST http://localhost:3000/api/chat \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer ${user.apiKey}" \\
+  -d '{"message": "What is the latest news in Sri Lanka?", "enableGoogleSearch": true}'`}</pre>
+                      </div>
                     </div>
                   </div>
 
